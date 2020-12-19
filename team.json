@@ -2,11 +2,27 @@
     {
         "firstName": "Bilc",
         "lastName": "Adina",
-        "link":" gitHub,linkedin"
+        "link": "https://github.com/bilcadina",
+        "age": 80
     },
     {
         "firstName": "Pop",
         "lastName": "Filip",
-        "link": "gitHub,linkedin"
+        "link": "https://www.linkedin.com/feed/"
+    },
+    {
+        "firstName": "Pop",
+        "lastName": "Filip",
+        "link": "https://www.linkedin.com/feed/"
+    },
+    {
+        "firstName": "Pop",
+        "lastName": "Filip",
+        "link": "https://www.linkedin.com/feed/"
+    },
+    {
+        "firstName": "Bilc",
+        "lastName": "Adina",
+        "link": "https://github.com/bilcadina"
     }
 ]
