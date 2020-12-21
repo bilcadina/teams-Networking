@@ -3,7 +3,7 @@
         "firstName": "Bilc",
         "lastName": "Adina",
         "link": "https://github.com/bilcadina",
-        "age": 80
+        "telephone": "0755603900"
     },
     {
         "firstName": "Pop",
@@ -21,8 +21,8 @@
         "link": "https://www.linkedin.com/feed/"
     },
     {
-        "firstName": "Bilc",
-        "lastName": "Adina",
-        "link": "https://github.com/bilcadina"
+        "firstName": "",
+        "lastName": "",
+        "link": ""
     }
 ]
