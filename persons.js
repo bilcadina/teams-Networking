@@ -1,10 +1,8 @@
 
 function insertPersons(members){
     const tbody = document.querySelector("#persons tbody");
-
-     var membersHTML = members.map(function(member) {
-        return getPersonHtml(member.firstName, member.lastName, member.link);
-    });
+     var membersHTML = members.map(member => 
+         getPersonHtml(member.firstName, member.lastName, member.link));
     tbody.innerHTML = membersHTML.join('');
 }
 
