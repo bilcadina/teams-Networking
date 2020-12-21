@@ -1,6 +1,19 @@
 table th,td {
-    border: 1px solid black;
-   
-
-
+    border: 1px solid rgb(8, 131, 59);
+    padding: 5px;
+    text-align: center;
+    border-spacing: 0px;
+}
+th{
+    display: table-cell;
+}
+#persons{
+    border-collapse: collapse;
+    width: 100%;
+}
+table{
+    border-spacing: 0px;
+}
+#persons tr:nth-child(even){
+    background-attachment: rgb(139, 132, 132);
 }
