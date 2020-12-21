@@ -4,16 +4,16 @@ table th,td {
     text-align: center;
     border-spacing: 0px;
 }
-th{
-    display: table-cell;
+#persons th{
+    background-color: rgb(8, 146, 116);
 }
+
 #persons{
     border-collapse: collapse;
     width: 100%;
-}
-table{
     border-spacing: 0px;
 }
+
 #persons tr:nth-child(even){
-    background-attachment: rgb(139, 132, 132);
+    background-color: rgb(190, 235, 212);
 }
