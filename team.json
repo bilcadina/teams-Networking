@@ -2,17 +2,16 @@
     {
         "firstName": "Bilc",
         "lastName": "Adina",
-        "link": "https://github.com/bilcadina",
-        "telephone": "0755603900"
+        "linkedin": "https://github.com/bilcadina"
     },
     {
         "firstName": "Carunt",
         "lastName": "Filip",
-        "link": "https://www.linkedin.com/feed/"
+        "linkedin": "https://www.linkedin.com/feed/"
     },
     {
         "firstName": "Danciu",
         "lastName": "Andrei",
-        "link": "https://www.linkedin.com/feed/"
+        "linkedin": "https://www.linkedin.com/feed/"
     }
 ]
