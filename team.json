@@ -1,18 +1,21 @@
 [
     {
+        "id": "a123",
         "firstName": "Bilc",
         "lastName": "Adina",
         "linkedin": "https://github.com/bilcadina"
     },
     {
+        "id": "b563",
         "firstName": "Carunt",
         "lastName": "Filip",
         "linkedin": "https://www.linkedin.com/feed/"
     },
-    {
+    {   
+        "id": "3afe",
         "firstName": "Danciu",
         "lastName": "Andrei",
         "linkedin": "https://www.linkedin.com/feed/"
-    },
-    {"firstName":"Muresan","lastName":"Fineas","linkedin":"https://www.linkedin.com/in/fineasmuresan/"}
+    }
+
 ]

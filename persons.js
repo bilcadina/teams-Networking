@@ -12,8 +12,8 @@ const API = {
         METHOD: "GET"
     },
     DELETE:{
-        URL:"",
-        METHOD: "GET"
+        URL:"delete.json",
+        METHOD: "GET"//DELETE
     }
 };
 
@@ -35,7 +35,9 @@ function getPersonHtml (person) {
         <td>${person.firstName}</td>
         <td>${person.lastName}</td>
         <td><a target="_blank" href="https://www.linkedin.com/feed/${linkedin}">linkedin</a></td>
-        <td></td>
+        <td>
+        <a href="${API.DELETE.URL}?id=${person.id}"a123">&#10006;</a>
+        </td>
  </tr>`;
 }
     let allPersons = [];
