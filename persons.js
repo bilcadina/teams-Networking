@@ -1,3 +1,24 @@
+const API = {
+    CREATE: {
+        URL:"create.json",
+        METHOD: "GET" //POST
+    },
+    READ:{
+        URL:"team.json",
+        METHOD: "GET"
+    },
+    UPDATE:{
+        URL:"",
+        METHOD: "GET"
+    },
+    DELETE:{
+        URL:"",
+        METHOD: "GET"
+    }
+};
+
+
+
 
 function insertPersons(persons) {
     const tbody = document.querySelector("#list tbody");
@@ -14,17 +35,21 @@ function getPersonHtml (person) {
         <td>${person.firstName}</td>
         <td>${person.lastName}</td>
         <td><a target="_blank" href="https://www.linkedin.com/feed/${linkedin}">linkedin</a></td>
+        <td></td>
  </tr>`;
 }
     let allPersons = [];
 
+    function loadList(){
+        fetch(API.READ.URL)
+        .then(response => response.json())
+        .then(data => { 
+            allPersons = data;
+            insertPersons(data);
+        });
+    }
 
-fetch('team.json')
-    .then(response => response.json())
-    .then(data => { 
-        allPersons = data;
-        insertPersons(data);
-    });
+loadList();
 
 function searchPersons(text) {
       text = text.toLowerCase();
@@ -45,3 +70,38 @@ function searchPersons(text) {
 
     insertPersons(filtrate);
 });
+
+function saveMember() {
+    const firstName = document.querySelector("input[name=firstName]").value;
+    const lastName = document.querySelector("input[name=lastName]").value;
+    const Linkedin = document.querySelector("input[name=linkedin]").value;
+    
+    const person ={
+        firstName, 
+        lastName,
+        linkedin: Linkedin 
+    };
+    console.info('saving...', person,JSON.stringify(person));
+
+    fetch(API.CREATE.URL, {
+        method:API.CREATE.METHOD,
+        body:API.CREATE.METHOD === "GET" ? null: JSON.stringify(person)
+    })
+        .then(res => res.json())
+        .then(r => {
+          console.warn(r);
+          if (r.success) {
+              setTimeout(()=> {
+            //alert('saving data..please wait until we are ready.');
+                console.info('refresh list');
+                loadList();
+              }, 30000);
+          } 
+      });
+}
+ 
+const saveBtn = document.querySelector("#list button");
+saveBtn.addEventListener("click", () => {
+    saveMember();
+});
+
