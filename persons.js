@@ -34,25 +34,27 @@ function getPersonHtml (person) {
         <td><a target="_blank" href="https://github.com/${gitHub}">GitHub</a></td>
         <td>
         <a href="#" class="delete-row" data-id="${person.id}">&#10006;</a>
+        <a href="#" class="edit-row" data-id="${person.id}">&#9998;</a>
         </td>
  </tr>`;
 }
-    let allPersons = [];
 
-    function loadList(){
-        fetch(API.READ.URL)
-        .then(response => response.json())
-        .then(data => { 
-            allPersons = data;
-            insertPersons(data);
-        });
-    }
+let allPersons = [];
+
+function loadList(){
+    fetch(API.READ.URL)
+    .then(response => response.json())
+    .then(data => { 
+        allPersons = data;
+        insertPersons(data);
+    });
+}
 
 loadList();
 
 function searchPersons(text) {
-      text = text.toLowerCase();
-      console.warn("search", text);
+    text = text.toLowerCase();
+    console.warn("search", text);
     return allPersons.filter(person => {
           console.info(person.firstName);
         return person.firstName.toLowerCase().indexOf(text) > -1 || 
@@ -89,13 +91,24 @@ function saveMember() {
 }
 
 function deleteTeamMember(id){
-        fetch("http://localhost:3000/teams-json/delete",{
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ id })
-        });
+    fetch(API.DELETE.URL,{
+        method: API.DELETE.METHOD,
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ id })
+    })
+    .then(res => res.json())
+    .then(r => {
+        console.warn(r);
+        if(r.success) {
+            loadList();
+        }
+    });  
+}
+
+function editTeamMember(){
+    
 }
 
 function addEventListeners(){
@@ -111,7 +124,7 @@ function addEventListeners(){
  
     const saveBtn = document.querySelector("#list tfoot button");
     saveBtn.addEventListener("click", () => {
-        saveTeamMember();
+        saveMember();
     });
 
     const table = document.querySelector("#list tbody");
