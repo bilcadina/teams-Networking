@@ -17,6 +17,8 @@ const API = {
     }
 };
 
+let editId;
+
 function insertPersons(persons) {
     const tbody = document.querySelector('#list tbody');
     tbody.innerHTML = getPersonsHtml(persons);
@@ -90,6 +92,35 @@ function saveMember() {
       });
 }
 
+function updateTeamMember() {
+    const firstName = document.querySelector("input[name=firstName]").value;
+    const lastName = document.querySelector("input[name=lastName]").value;
+    const gitHub = document.querySelector("input[name=gitHub]").value;
+    
+    const person ={
+        id:editId,
+        firstName, 
+        lastName,
+        gitHub: gitHub
+    };
+    console.info('updating...', person,JSON.stringify(person));
+
+    fetch(API.UPDATE.URL, {
+        method:API.UPDATE.METHOD,
+        headers: {
+        "Content-Type": "application/json"
+        },
+        body:API.UPDATE.METHOD === "GET" ? null: JSON.stringify(person)
+    })
+        .then(res => res.json())
+        .then(r => {
+          console.warn(r);
+          if (r.success) {
+                loadList();
+          } 
+      });
+}
+
 function deleteTeamMember(id){
     fetch(API.DELETE.URL,{
         method: API.DELETE.METHOD,
@@ -107,8 +138,21 @@ function deleteTeamMember(id){
     });  
 }
 
-function editTeamMember(){
-    
+
+function populateCurrentMember(id){
+     var person = allPersons.find(person => person.id === id);
+
+     editId = id;
+
+     const firstName = document.querySelector("input[name=firstName]");
+     const lastName = document.querySelector("input[name=lastName]");
+     const gitHub = document.querySelector("input[name=gitHub]");
+
+     firstName.value = person.firstName;
+     lastName.value = person.lastName;
+     gitHub.value = person.gitHub;
+
+      console.warn('edit', id, person);
 }
 
 function addEventListeners(){
@@ -124,7 +168,12 @@ function addEventListeners(){
  
     const saveBtn = document.querySelector("#list tfoot button");
     saveBtn.addEventListener("click", () => {
-        saveMember();
+        
+        if (editId) {
+            updateTeamMember();
+        } else {
+            saveMember();
+        }
     });
 
     const table = document.querySelector("#list tbody");
@@ -134,11 +183,15 @@ function addEventListeners(){
             const id = target.getAttribute("data-id");
             console.warn('delete', id);
             deleteTeamMember(id);
+        } else if ( target.matches("a.edit-row")) {
+            const id = target.getAttribute("data-id");
+           populateCurrentMember(id);
         }
     });
 }
 
 addEventListeners();
+
 
 
 
